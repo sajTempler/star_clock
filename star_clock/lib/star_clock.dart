@@ -81,7 +81,8 @@ class _StarClockState extends State<StarClock> {
     });
   }
 
-  // static ImageProvider bg = AssetImage('assets/jeremy-perkins-unsplash.jpg');
+  // static ImageProvider bg =
+  //     AssetImage('assets/jeremy-perkins-unsplash-min.jpg');
   // static ImageProvider bg = AssetImage('assets/max-mckinnon-unsplash.jpg');
   @override
   Widget build(BuildContext context) {
@@ -99,6 +100,12 @@ class _StarClockState extends State<StarClock> {
         ? themeStore.setTheme(_lightTheme)
         : themeStore.setTheme(_darkTheme);
     return Container(
+      // decoration: BoxDecoration(
+      //   image: DecorationImage(
+      //     image: bg,
+      //     fit: BoxFit.cover,
+      //   ),
+      // ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(

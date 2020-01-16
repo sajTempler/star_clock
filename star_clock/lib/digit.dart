@@ -161,7 +161,7 @@ class _DigitDrawerState extends State<DigitDrawer>
 
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3),
+      duration: Duration(seconds: 4),
     )..forward();
 
     animation = Tween(begin: 0.0, end: 1.0).animate(animationController)
