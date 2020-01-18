@@ -8,7 +8,7 @@ import 'package:star_clock/utils/theme.dart';
 class Digit extends StatefulWidget {
   final digit;
 
-  Digit(this.digit);
+  const Digit(this.digit);
 
   @override
   _DigitState createState() => _DigitState();
@@ -209,14 +209,12 @@ class _DigitDrawerState extends State<DigitDrawer>
 }
 
 class DigitPainter extends CustomPainter {
-  Function pointsGetter;
+  final Function pointsGetter;
   final fraction;
   final List params;
   final Map<String, dynamic> pointDetails;
 
-  List<Offset> _startingPoints;
-
-  DigitPainter({
+  const DigitPainter({
     this.pointsGetter,
     this.fraction,
     this.params,
@@ -228,6 +226,7 @@ class DigitPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    List<Offset> startingPoints;
     List<Offset> _points;
 
     final linePaint = Paint();
@@ -246,12 +245,12 @@ class DigitPainter extends CustomPainter {
       ..strokeWidth = 2
       ..color = theme['digitLine'] ?? Colors.red;
 
-    if (_startingPoints == null) {
-      _startingPoints = pointsGetter(size);
-      _points = _startingPoints;
+    if (startingPoints == null) {
+      startingPoints = pointsGetter(size);
+      _points = startingPoints;
     }
 
-    _points = _startingPoints;
+    _points = startingPoints;
 
     for (int i = 0; i < _points.length - 1; i++) {
       Offset inputPoint = _points[i];
@@ -284,6 +283,6 @@ class DigitPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(DigitPainter old) {
-    return fraction != old.fraction && old._startingPoints == _startingPoints;
+    return fraction != old.fraction;
   }
 }
