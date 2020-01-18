@@ -242,7 +242,7 @@ class DigitPainter extends CustomPainter {
 
     linePaint
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2
+      ..strokeWidth = 3
       ..color = theme['digitLine'] ?? Colors.red;
 
     if (startingPoints == null) {

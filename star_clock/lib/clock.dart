@@ -5,6 +5,7 @@ import 'package:flutter_clock_helper/model.dart';
 import 'package:star_clock/digit.dart';
 
 import 'package:intl/intl.dart';
+import 'package:star_clock/utils/theme.dart';
 
 class Clock extends StatefulWidget {
   const Clock({this.model, Key key}) : super(key: key);
@@ -62,7 +63,7 @@ class _ClockState extends State<Clock> {
       // Update once per second, but make sure to do it at the beginning of each
       // new second, so that the clock is accurate.
       // _timer = Timer(
-      //   Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
+      //   Duration(seconds: 3) - Duration(milliseconds: _dateTime.millisecond),
       //   _updateTime,
       // );
     });
@@ -79,21 +80,24 @@ class _ClockState extends State<Clock> {
 
     final minuteFirstDigit = minute.toString()[0];
     final minuteSecondDigit = minute.toString()[1];
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Digit(int.parse(hourFirstDigit)),
-            Digit(int.parse(hourSecondDigit)),
-            SizedBox(
-              width: 50,
-              height: MediaQuery.of(context).size.height,
-            ),
-            Digit(int.parse(minuteFirstDigit)),
-            Digit(int.parse(minuteSecondDigit)),
-          ],
+    return Container(
+      color: themeStore.getTheme()['background'],
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Digit(int.parse(hourFirstDigit)),
+              Digit(int.parse(hourSecondDigit)),
+              SizedBox(
+                width: 50,
+                height: MediaQuery.of(context).size.height,
+              ),
+              Digit(int.parse(minuteFirstDigit)),
+              Digit(int.parse(minuteSecondDigit)),
+            ],
+          ),
         ),
       ),
     );

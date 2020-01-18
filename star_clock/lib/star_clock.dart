@@ -5,13 +5,13 @@ import 'package:star_clock/clock.dart';
 import 'package:star_clock/utils/theme.dart';
 
 final _lightTheme = {
-  'background': Colors.white,
+  'background': Color(0xFFFFF8E1),
   'digitLine': Colors.black,
   "digitPoint": Colors.black,
 };
 
 final _darkTheme = {
-  'background': Colors.black,
+  'background': Colors.black54,
   'digitLine': Colors.white70,
   'digitPoint': Colors.white,
 };
