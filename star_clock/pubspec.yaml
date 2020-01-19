@@ -21,6 +21,7 @@ dependencies:
     sdk: flutter
   flutter_clock_helper:
     path: ../flutter_clock_helper
+  flare_flutter: ^2.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -44,9 +45,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/jeremy-perkins-unsplash.jpg
-   - assets/jeremy-perkins-unsplash-min.jpg
-   - assets/max-mckinnon-unsplash.jpg
+   - assets/stars.flr
+   - assets/day.flr
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

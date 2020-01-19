@@ -81,7 +81,8 @@ class _ClockState extends State<Clock> {
     final minuteFirstDigit = minute.toString()[0];
     final minuteSecondDigit = minute.toString()[1];
     return Container(
-      color: themeStore.getTheme()['background'],
+      // color: themeStore.getTheme()['background'],
+      color: Colors.transparent,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(

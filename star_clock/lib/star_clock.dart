@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 import 'package:flutter_clock_helper/model.dart';
 import 'package:star_clock/clock.dart';
@@ -26,23 +27,28 @@ class StarClock extends StatefulWidget {
 }
 
 class _StarClockState extends State<StarClock> {
-  // static const ImageProvider imgProvider =
-  //     AssetImage('assets/jeremy-perkins-unsplash-min.jpg');
+  static const day = FlareActor(
+    "assets/day.flr",
+    fit: BoxFit.fill,
+    animation: "day",
+  );
 
-  // static const img = Image(
-  //   image: imgProvider,
-  //   fit: BoxFit.fitWidth,
-  // );
+  static const night = FlareActor(
+    "assets/stars.flr",
+    fit: BoxFit.fill,
+    animation: "stars",
+  );
 
   @override
   Widget build(BuildContext context) {
-    Theme.of(context).brightness == Brightness.light
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    isLight
         ? themeStore.setTheme(_lightTheme)
         : themeStore.setTheme(_darkTheme);
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
-        // img,
+        isLight ? day : night,
         Clock(
           model: widget.model,
         )
