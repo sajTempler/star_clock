@@ -5,7 +5,6 @@ import 'package:flutter_clock_helper/model.dart';
 import 'package:star_clock/digit.dart';
 
 import 'package:intl/intl.dart';
-import 'package:star_clock/utils/theme.dart';
 
 class Clock extends StatefulWidget {
   const Clock({this.model, Key key}) : super(key: key);
@@ -75,13 +74,12 @@ class _ClockState extends State<Clock> {
         DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_dateTime);
     final minute = DateFormat('mm').format(_dateTime);
 
-    final hourFirstDigit = hour.toString()[0];
-    final hourSecondDigit = hour.toString()[1];
+    final hourFirstDigit = int.parse(hour.toString()[0]);
+    final hourSecondDigit = int.parse(hour.toString()[1]);
 
-    final minuteFirstDigit = minute.toString()[0];
-    final minuteSecondDigit = minute.toString()[1];
+    final minuteFirstDigit = int.parse(minute.toString()[0]);
+    final minuteSecondDigit = int.parse(minute.toString()[1]);
     return Container(
-      // color: themeStore.getTheme()['background'],
       color: Colors.transparent,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -89,14 +87,14 @@ class _ClockState extends State<Clock> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Digit(int.parse(hourFirstDigit)),
-              Digit(int.parse(hourSecondDigit)),
+              Digit(hourFirstDigit),
+              Digit(hourSecondDigit),
               SizedBox(
                 width: 50,
                 height: MediaQuery.of(context).size.height,
               ),
-              Digit(int.parse(minuteFirstDigit)),
-              Digit(int.parse(minuteSecondDigit)),
+              Digit(minuteFirstDigit),
+              Digit(minuteSecondDigit),
             ],
           ),
         ),

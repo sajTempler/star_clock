@@ -15,7 +15,7 @@ class Digit extends StatefulWidget {
 }
 
 class _DigitState extends State<Digit> {
-  Function _getPointsMethod(num number) {
+  static Function _getPointsMethod(num number) {
     switch (number) {
       case 0:
         return zero;
@@ -42,7 +42,7 @@ class _DigitState extends State<Digit> {
     }
   }
 
-  Map<String, dynamic> _getPointsCount(num number) {
+  static Map<String, dynamic> _getPointsCount(num number) {
     switch (number) {
       case 0:
         return pointsDescription['ZERO'];
@@ -92,7 +92,7 @@ class _DigitState extends State<Digit> {
       width: MediaQuery.of(context).size.width / 6.5,
       height: MediaQuery.of(context).size.height,
       child: Padding(
-        padding: EdgeInsets.only(left: 20, right: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: DigitDrawer(
           pointsGetter: _getPointsMethod(widget.digit),
           pointDetails: _getPointsCount(widget.digit),
@@ -154,6 +154,26 @@ class _DigitDrawerState extends State<DigitDrawer>
     return result;
   }
 
+  void listener() {
+    setState(() {
+      _fraction = animation.value;
+    });
+
+    if (animation.status == AnimationStatus.completed) {
+      if (_forward) {
+        // animate back
+        animationController.animateTo(0);
+        _forward = false;
+      } else {
+        setState(() {
+          _params = generateParameteres(widget.pointDetails['count']);
+        });
+        animationController.animateTo(1);
+        _forward = true;
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -165,30 +185,13 @@ class _DigitDrawerState extends State<DigitDrawer>
     )..forward();
 
     animation = Tween(begin: 0.0, end: 1.0).animate(animationController)
-      ..addListener(() {
-        setState(() {
-          _fraction = animation.value;
-        });
-
-        if (animation.status == AnimationStatus.completed) {
-          if (_forward) {
-            // animate back
-            animationController.animateTo(0);
-            _forward = false;
-          } else {
-            setState(() {
-              _params = generateParameteres(widget.pointDetails['count']);
-            });
-            animationController.animateTo(1);
-            _forward = true;
-          }
-        }
-      });
+      ..addListener(listener);
   }
 
   @override
   void dispose() {
     animationController.dispose();
+    animation.removeListener(listener);
     super.dispose();
   }
 
