@@ -28,9 +28,9 @@ class StarClock extends StatefulWidget {
 
 class _StarClockState extends State<StarClock> {
   static const day = FlareActor(
-    "assets/day.flr",
+    "assets/day_background.flr",
     fit: BoxFit.fill,
-    animation: "Untitled",
+    animation: "day",
   );
 
   static const night = FlareActor(
