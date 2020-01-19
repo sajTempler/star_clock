@@ -30,7 +30,7 @@ class _StarClockState extends State<StarClock> {
   static const day = FlareActor(
     "assets/day.flr",
     fit: BoxFit.fill,
-    animation: "day",
+    animation: "Untitled",
   );
 
   static const night = FlareActor(
